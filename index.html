@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#F6EFE9" />
+  <meta name="description" content="新娘婚禮與造型前提醒事項｜造型與婚禮前備忘錄" />
+  <title>造型與婚禮前備忘錄</title>
+
+  <style>
+    :root{
+      --bg:#f8f3ef;
+      --surface:#fffaf7;
+      --surface-2:#f3e7e1;
+      --rose:#c8948f;
+      --rose-deep:#a66f6a;
+      --latte:#b99f8d;
+      --brown:#5e4b43;
+      --muted:#8e7d75;
+      --line:#eadbd3;
+      --success:#879b83;
+      --shadow:0 14px 40px rgba(104,77,67,.10);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:16px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--brown);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(226,193,184,.38), transparent 30%),
+        radial-gradient(circle at 95% 16%, rgba(238,220,207,.5), transparent 25%),
+        var(--bg);
+      font-family:
+        "Noto Sans TC","PingFang TC","Microsoft JhengHei",
+        system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    button,input{font:inherit}
+    button{color:inherit}
+    a{color:inherit}
+
+    .page{
+      width:min(100%, 760px);
+      margin:0 auto;
+      padding:0 16px calc(40px + env(safe-area-inset-bottom));
+    }
+
+    .hero{
+      position:relative;
+      margin:0 -16px 22px;
+      padding:48px 24px 28px;
+      overflow:hidden;
+      background:
+        linear-gradient(145deg, rgba(255,250,247,.94), rgba(240,221,214,.92));
+      border-radius:0 0 34px 34px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(166,111,106,.16);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .hero::before{
+      width:160px;height:160px;
+      right:-88px;top:-54px;
+    }
+    .hero::after{
+      width:88px;height:88px;
+      right:18px;top:18px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:10px;
+      color:var(--rose-deep);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:28px;height:1px;
+      background:currentColor;
+    }
+
+    h1{
+      margin:0;
+      max-width:520px;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:clamp(30px, 8vw, 46px);
+      line-height:1.22;
+      letter-spacing:.04em;
+      font-weight:700;
+    }
+
+    .welcome{
+      margin:14px 0 0;
+      max-width:590px;
+      color:#75635b;
+      font-size:14.5px;
+      line-height:1.85;
+    }
+
+    .progress-card{
+      margin-top:22px;
+      padding:14px 15px 13px;
+      border:1px solid rgba(255,255,255,.72);
+      border-radius:18px;
+      background:rgba(255,255,255,.46);
+      backdrop-filter:blur(8px);
+    }
+
+    .progress-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:9px;
+      font-size:12px;
+      font-weight:700;
+      color:#765f56;
+    }
+
+    .progress-track{
+      height:8px;
+      overflow:hidden;
+      border-radius:999px;
+      background:rgba(146,113,100,.12);
+    }
+
+    .progress-fill{
+      width:0%;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg, #c8948f, #b99f8d);
+      transition:width .28s ease;
+    }
+
+    .tabs-wrap{
+      position:sticky;
+      top:0;
+      z-index:10;
+      margin:0 -16px 18px;
+      padding:10px 16px 9px;
+      background:rgba(248,243,239,.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(234,219,211,.72);
+    }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding-bottom:2px;
+      scrollbar-width:none;
+      scroll-snap-type:x proximity;
+    }
+    .tabs::-webkit-scrollbar{display:none}
+
+    .tab{
+      flex:0 0 auto;
+      min-height:42px;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,250,247,.78);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      cursor:pointer;
+      scroll-snap-align:start;
+      transition:.2s ease;
+    }
+
+    .tab[aria-selected="true"]{
+      color:#fff;
+      border-color:var(--rose-deep);
+      background:var(--rose-deep);
+      box-shadow:0 7px 18px rgba(166,111,106,.18);
+    }
+
+    .panel{
+      display:none;
+      animation:fade .25s ease;
+    }
+    .panel.active{display:block}
+    @keyframes fade{
+      from{opacity:.4; transform:translateY(4px)}
+      to{opacity:1; transform:none}
+    }
+
+    .section-head{
+      margin:8px 2px 14px;
+    }
+
+    .section-kicker{
+      margin:0 0 4px;
+      color:var(--rose-deep);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.12em;
+    }
+
+    .section-title{
+      margin:0;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:24px;
+      line-height:1.45;
+      letter-spacing:.03em;
+    }
+
+    .section-desc{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .checklist{
+      display:grid;
+      gap:10px;
+    }
+
+    .todo{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      width:100%;
+      padding:15px 14px;
+      border:1px solid var(--line);
+      border-radius:var(--radius-md);
+      background:rgba(255,250,247,.94);
+      box-shadow:0 6px 18px rgba(111,81,70,.045);
+      cursor:pointer;
+      user-select:none;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .todo:active{transform:scale(.992)}
+    .todo:hover{border-color:#dcc5bb}
+
+    .todo input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .box{
+      position:relative;
+      flex:0 0 auto;
+      width:22px;height:22px;
+      margin-top:1px;
+      border:1.5px solid #cfb6aa;
+      border-radius:7px;
+      background:#fff;
+      transition:.2s ease;
+    }
+
+    .box::after{
+      content:"";
+      position:absolute;
+      left:6px;top:2.5px;
+      width:6px;height:11px;
+      border:solid white;
+      border-width:0 2px 2px 0;
+      transform:rotate(45deg) scale(.6);
+      opacity:0;
+      transition:.15s ease;
+    }
+
+    .todo input:focus-visible + .box{
+      outline:3px solid rgba(200,148,143,.25);
+      outline-offset:2px;
+    }
+
+    .todo input:checked + .box{
+      border-color:var(--success);
+      background:var(--success);
+    }
+
+    .todo input:checked + .box::after{
+      opacity:1;
+      transform:rotate(45deg) scale(1);
+    }
+
+    .todo-text{
+      min-width:0;
+      line-height:1.65;
+      transition:.2s ease;
+    }
+
+    .todo-title{
+      display:block;
+      color:#604d45;
+      font-size:14.5px;
+      font-weight:700;
+    }
+
+    .todo-note{
+      display:block;
+      margin-top:2px;
+      color:#9b8980;
+      font-size:12.5px;
+    }
+
+    .todo input:checked ~ .todo-text{
+      opacity:.52;
+    }
+
+    .todo input:checked ~ .todo-text .todo-title,
+    .todo input:checked ~ .todo-text .todo-note{
+      text-decoration:line-through;
+      text-decoration-thickness:1px;
+    }
+
+    .contact-card{
+      margin-top:28px;
+      padding:20px 18px;
+      border:1px solid #e7d4ca;
+      border-radius:var(--radius-lg);
+      background:
+        linear-gradient(160deg, rgba(245,229,222,.95), rgba(255,250,247,.95));
+      box-shadow:var(--shadow);
+    }
+
+    .contact-card h2{
+      margin:0;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:20px;
+      letter-spacing:.03em;
+    }
+
+    .contact-card > p{
+      margin:6px 0 16px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:9px;
+    }
+
+    .contact-item{
+      padding:12px 13px;
+      border-radius:14px;
+      background:rgba(255,255,255,.52);
+      border:1px solid rgba(255,255,255,.72);
+    }
+
+    .contact-label{
+      display:block;
+      margin-bottom:3px;
+      color:var(--rose-deep);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+
+    .contact-value{
+      display:block;
+      font-size:13.5px;
+      line-height:1.65;
+    }
+
+    .footer-actions{
+      display:flex;
+      justify-content:center;
+      margin:22px 0 4px;
+    }
+
+    .reset-btn{
+      border:0;
+      background:transparent;
+      color:#a18d84;
+      font-size:12px;
+      text-decoration:underline;
+      text-underline-offset:4px;
+      cursor:pointer;
+      padding:8px 12px;
+    }
+
+    .footer-note{
+      margin:8px 0 0;
+      text-align:center;
+      color:#ad9b92;
+      font-size:11px;
+      line-height:1.65;
+    }
+
+    @media (min-width:640px){
+      .page{padding-left:24px;padding-right:24px}
+      .hero{margin-left:-24px;margin-right:-24px;padding:60px 40px 34px}
+      .tabs-wrap{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}
+      .checklist{grid-template-columns:1fr 1fr}
+      .todo{min-height:104px}
+      .contact-list{grid-template-columns:1fr 1fr}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        scroll-behavior:auto !important;
+        animation-duration:.01ms !important;
+        transition-duration:.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Bridal Preparation</div>
+      <h1>造型與婚禮前備忘錄</h1>
+      <p class="welcome">
+        親愛的新娘，婚禮前的每一份準備，都是讓當天更從容、更美好的小小累積。
+        依照時間慢慢完成就好，記得留一點空白給自己，好好休息，也好好期待。
+      </p>
+
+      <div class="progress-card" aria-label="整體準備進度">
+        <div class="progress-row">
+          <span>準備完成度</span>
+          <span id="progressText">0 / 0</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="tabs-wrap">
+      <nav class="tabs" role="tablist" aria-label="婚禮準備時間">
+        <button class="tab" id="tab-month" role="tab" aria-selected="true" aria-controls="panel-month" data-tab="month">婚禮前 1 個月</button>
+        <button class="tab" id="tab-week" role="tab" aria-selected="false" aria-controls="panel-week" data-tab="week">婚禮前 1 週</button>
+        <button class="tab" id="tab-day" role="tab" aria-selected="false" aria-controls="panel-day" data-tab="day">婚禮前 1 天</button>
+        <button class="tab" id="tab-wedding" role="tab" aria-selected="false" aria-controls="panel-wedding" data-tab="wedding">婚禮當天</button>
+      </nav>
+    </div>
+
+    <section class="panel active" id="panel-month" role="tabpanel" aria-labelledby="tab-month">
+      <div class="section-head">
+        <p class="section-kicker">ONE MONTH BEFORE</p>
+        <h2 class="section-title">婚禮前 1 個月</h2>
+        <p class="section-desc">先把會影響整體造型與流程的大方向確認好，後面會輕鬆很多。</p>
+      </div>
+
+      <div class="checklist">
+        <label class="todo">
+          <input type="checkbox" data-id="month-01">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">確認婚紗、禮服與造型搭配</span>
+            <span class="todo-note">包含每套禮服、髮型方向、飾品與頭紗搭配。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="month-02">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">整理喜歡與不喜歡的造型參考</span>
+            <span class="todo-note">圖片越具體，越有助於和造型師確認風格。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="month-03">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">安排髮色與修剪時間</span>
+            <span class="todo-note">建議避免婚禮前幾天突然大幅改變髮色或髮型。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="month-04">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">建立穩定保養習慣</span>
+            <span class="todo-note">以保濕、溫和清潔為主，暫緩刺激性高的新療程。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="month-05">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">確認婚禮流程與造型時間</span>
+            <span class="todo-note">確認迎娶、儀式、宴客、換裝與攝影等關鍵時間。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="month-06">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">如需美甲／美睫，提前預約</span>
+            <span class="todo-note">讓婚禮前一週的行程不要過度集中。</span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-week" role="tabpanel" aria-labelledby="tab-week" hidden>
+      <div class="section-head">
+        <p class="section-kicker">ONE WEEK BEFORE</p>
+        <h2 class="section-title">婚禮前 1 週</h2>
+        <p class="section-desc">這一週以「穩定」為主，不急著做新的嘗試，讓肌膚與作息保持舒服。</p>
+      </div>
+
+      <div class="checklist">
+        <label class="todo">
+          <input type="checkbox" data-id="week-01">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">完成染髮／補染與基本修剪</span>
+            <span class="todo-note">保留幾天讓髮色自然，也避免婚禮前臨時不適應。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="week-02">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">完成溫和去角質與身體保養</span>
+            <span class="todo-note">頸部、肩膀、背部與手臂也別忘記保濕。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="week-03">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">確認美甲與指甲長度</span>
+            <span class="todo-note">建議選擇和禮服、捧花都容易搭配的色系。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="week-04">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">再次確認造型師到場資訊</span>
+            <span class="todo-note">日期、時間、地點、停車方式與聯絡窗口都確認一次。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="week-05">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">準備當天會使用的飾品與物件</span>
+            <span class="todo-note">耳環、項鍊、隱形眼鏡、NuBra、婚鞋等集中收好。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="week-06">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">維持睡眠與飲食穩定</span>
+            <span class="todo-note">少熬夜、少過度飲酒與高刺激飲食，多補充水分。</span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-day" role="tabpanel" aria-labelledby="tab-day" hidden>
+      <div class="section-head">
+        <p class="section-kicker">THE DAY BEFORE</p>
+        <h2 class="section-title">婚禮前 1 天</h2>
+        <p class="section-desc">把明天需要的東西集中好，今晚的任務就是放鬆、早點休息。</p>
+      </div>
+
+      <div class="checklist">
+        <label class="todo">
+          <input type="checkbox" data-id="day-01">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">洗頭並完全吹乾</span>
+            <span class="todo-note">除非造型師另有交代，避免使用過量髮油或厚重護髮品。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="day-02">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">臉部以保濕、舒緩為主</span>
+            <span class="todo-note">避免臨時刷酸、擠粉刺或嘗試從未用過的新保養。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="day-03">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">確認腋下與需要露出的肌膚整理</span>
+            <span class="todo-note">若平常容易敏感，避免在太靠近婚禮的時間第一次除毛。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="day-04">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">將禮服、婚鞋與配件集中放置</span>
+            <span class="todo-note">重要物品可交由伴娘或家人共同確認。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="day-05">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">設定鬧鐘與備用鬧鐘</span>
+            <span class="todo-note">並確認手機充電、行動電源及隔天交通安排。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="day-06">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">睡前避免大量飲水與過鹹飲食</span>
+            <span class="todo-note">正常補充水分即可，讓隔天起床狀態更舒服。</span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-wedding" role="tabpanel" aria-labelledby="tab-wedding" hidden>
+      <div class="section-head">
+        <p class="section-kicker">WEDDING DAY</p>
+        <h2 class="section-title">婚禮當天</h2>
+        <p class="section-desc">今天不用追求每件事都完美，只要把自己交給準備好的流程，享受屬於妳的一天。</p>
+      </div>
+
+      <div class="checklist">
+        <label class="todo">
+          <input type="checkbox" data-id="wedding-01">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">穿著方便更換、不需套頭的上衣</span>
+            <span class="todo-note">例如襯衫、罩衫或前開式睡袍，避免完成髮妝後拉扯。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="wedding-02">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">基礎保養即可，依約定保持素顏</span>
+            <span class="todo-note">若造型師有特別交代，請以雙方事前確認內容為準。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="wedding-03">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">戴好隱形眼鏡再開始化妝</span>
+            <span class="todo-note">若眼睛容易乾澀，可準備人工淚液與備用眼鏡。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="wedding-04">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">準備簡單早餐與飲用水</span>
+            <span class="todo-note">不要空腹上妝；選擇清爽、容易入口的食物即可。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="wedding-05">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">指定一位親友協助保管重要物品</span>
+            <span class="todo-note">手機、戒指、紅包、飾品與臨時用品盡量不要由新娘本人顧。</span>
+          </span>
+        </label>
+
+        <label class="todo">
+          <input type="checkbox" data-id="wedding-06">
+          <span class="box" aria-hidden="true"></span>
+          <span class="todo-text">
+            <span class="todo-title">最後一件事：記得享受今天</span>
+            <span class="todo-note">留一點時間呼吸、喝水、吃東西，也好好看看身邊的人。</span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <aside class="contact-card" aria-labelledby="contact-title">
+      <h2 id="contact-title">緊急聯絡與注意事項</h2>
+      <p>建議婚禮前先將關鍵聯絡資訊更新完成，也可將此頁加入手機主畫面方便查看。</p>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-label">造型師聯絡方式</span>
+          <span class="contact-value">姓名：＿＿＿＿＿＿<br>電話 / LINE：＿＿＿＿＿＿</span>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">婚禮當日聯絡窗口</span>
+          <span class="contact-value">姓名：＿＿＿＿＿＿<br>電話：＿＿＿＿＿＿</span>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">請特別記得</span>
+          <span class="contact-value">若有肌膚敏感、過敏史、眼睛不適或其他特殊狀況，請提前主動告知造型師。</span>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">臨時狀況</span>
+          <span class="contact-value">若時間、地點或流程有異動，請盡早通知造型師與主要婚禮窗口。</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="footer-actions">
+      <button type="button" class="reset-btn" id="resetBtn">清除全部勾選紀錄</button>
+    </div>
+
+    <p class="footer-note">
+      Your day, your pace, your beautiful story.<br>
+      願妳自在地成為婚禮當天最喜歡的自己。
+    </p>
+  </main>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = 'bridalMemoChecklist_v1';
+      const TAB_KEY = 'bridalMemoActiveTab_v1';
+
+      const tabs = [...document.querySelectorAll('.tab')];
+      const panels = [...document.querySelectorAll('.panel')];
+      const checkboxes = [...document.querySelectorAll('input[type="checkbox"][data-id]')];
+      const progressText = document.getElementById('progressText');
+      const progressFill = document.getElementById('progressFill');
+      const resetBtn = document.getElementById('resetBtn');
+
+      function loadState() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function saveState() {
+        const state = {};
+        checkboxes.forEach(box => {
+          state[box.dataset.id] = box.checked;
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function updateProgress() {
+        const total = checkboxes.length;
+        const done = checkboxes.filter(box => box.checked).length;
+        const percent = total ? (done / total) * 100 : 0;
+
+        progressText.textContent = `${done} / ${total}`;
+        progressFill.style.width = `${percent}%`;
+        progressFill.parentElement.setAttribute(
+          'aria-label',
+          `已完成 ${done} 項，共 ${total} 項`
+        );
+      }
+
+      function restoreChecks() {
+        const state = loadState();
+        checkboxes.forEach(box => {
+          box.checked = Boolean(state[box.dataset.id]);
+        });
+        updateProgress();
+      }
+
+      function activateTab(name, persist = true) {
+        tabs.forEach(tab => {
+          const active = tab.dataset.tab === name;
+          tab.setAttribute('aria-selected', String(active));
+          tab.tabIndex = active ? 0 : -1;
+          if (active) {
+            tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        });
+
+        panels.forEach(panel => {
+          const active = panel.id === `panel-${name}`;
+          panel.classList.toggle('active', active);
+          panel.hidden = !active;
+        });
+
+        if (persist) {
+          localStorage.setItem(TAB_KEY, name);
+        }
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => activateTab(tab.dataset.tab));
+
+        tab.addEventListener('keydown', event => {
+          if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+
+          event.preventDefault();
+          const current = tabs.indexOf(tab);
+          const direction = event.key === 'ArrowRight' ? 1 : -1;
+          const next = (current + direction + tabs.length) % tabs.length;
+          tabs[next].focus();
+          activateTab(tabs[next].dataset.tab);
+        });
+      });
+
+      checkboxes.forEach(box => {
+        box.addEventListener('change', () => {
+          saveState();
+          updateProgress();
+        });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        const ok = window.confirm('確定要清除所有已勾選的項目嗎？');
+        if (!ok) return;
+
+        checkboxes.forEach(box => box.checked = false);
+        localStorage.removeItem(STORAGE_KEY);
+        updateProgress();
+      });
+
+      restoreChecks();
+
+      const savedTab = localStorage.getItem(TAB_KEY);
+      const validTabs = tabs.map(tab => tab.dataset.tab);
+      activateTab(validTabs.includes(savedTab) ? savedTab : 'month', false);
+    })();
+  </script>
+</body>
+</html>
