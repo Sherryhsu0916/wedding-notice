@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>造型與婚禮前備忘錄</title>
+    <!-- Google Fonts: 導入適合日系質感與美式標題的字型 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --card-white: rgba(255, 255, 255, 0.85);
+            --primary-nude: #E8D5C8;
+            --accent-pink: #D9A098;
+            --text-main: #4A4238;
+            --text-sub: #8C8275;
+            --border-color: #EFE8E1;
+            --shadow: 0 10px 30px rgba(180, 160, 140, 0.12);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            padding: 20px 16px 40px 16px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* 標題與美式復古英文裝飾 */
+        header {
+            text-align: center;
+            padding: 24px 12px 16px 12px;
+            margin-bottom: 20px;
+        }
+
+        .subtitle-en {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent-pink);
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            font-weight: 300;
+            line-height: 1.7;
+            background: var(--card-white);
+            padding: 16px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        /* 新娘識別碼卡片 */
+        .user-id-card {
+            background: var(--card-white);
+            border: 1px dashed var(--accent-pink);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .user-id-card label {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            white-space: nowrap;
+        }
+
+        .user-id-card input {
+            width: 100%;
+            border: none;
+            background: #F7F3EE;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* 進度條 */
+        .progress-container {
+            background: var(--card-white);
+            padding: 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-bg {
+            height: 8px;
+            background: #EFE8E1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-nude), var(--accent-pink));
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+
+        /* Tabs 分頁切換 */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+            background: rgba(232, 213, 200, 0.2);
+            padding: 4px;
+            border-radius: 12px;
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 10px 4px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .tab-btn.active {
+            background: #FFFFFF;
+            color: var(--text-main);
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* 清單列表 */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .check-item {
+            background: var(--card-white);
+            border: 1px solid var(--border-color);
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .check-item input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid var(--accent-pink);
+            border-radius: 6px;
+            outline: none;
+            margin-top: 2px;
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .check-item input[type="checkbox"]:checked {
+            background-color: var(--accent-pink);
+            border-color: var(--accent-pink);
+        }
+
+        .check-item input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 4px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .check-item label {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            cursor: pointer;
+            line-height: 1.5;
+            transition: color 0.2s, text-decoration 0.2s;
+        }
+
+        .check-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: var(--text-sub);
+            opacity: 0.7;
+        }
+
+        /* 緊急聯絡與注意事項卡片 */
+        .emergency-card {
+            background: #FAF4F0;
+            border: 1px solid var(--primary-nude);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .emergency-card h3 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .emergency-card ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .emergency-card li strong {
+            color: var(--text-main);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="subtitle-en">Bridal Beauty Guide</div>
+        <h1>造型與婚禮前備忘錄</h1>
+        <div class="welcome-text">
+            親愛的準新娘：這段時間辛苦你了！為了讓你能夠以最佳狀態迎接大喜之日，我們為你準備了這份備忘清單。請隨時勾選確認，與我們一起優雅倒數。
+        </div>
+    </header>
+
+    <!-- 專屬識別碼輸入區 -->
+    <div class="user-id-card">
+        <label for="brideId">新娘姓名／代碼：</label>
+        <input type="text" id="brideId" placeholder="例如：HanYun-0520" value="bride-default">
+    </div>
+
+    <!-- 進度條區塊 -->
+    <div class="progress-container">
+        <div class="progress-header">
+            <span>準備完成度</span>
+            <span id="progressText">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- 時間分頁按鈕 -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(0)">前 1 個月</button>
+        <button class="tab-btn" onclick="switchTab(1)">前 1 週</button>
+        <button class="tab-btn" onclick="switchTab(2)">前 1 天</button>
+        <button class="tab-btn" onclick="switchTab(3)">當天</button>
+    </div>
+
+    <!-- 待辦清單內容區 -->
+    <div id="tab-0" class="tab-content active">
+        <ul class="checklist">
+            <li class="check-item"><input type="checkbox" id="m1-1"><label for="m1-1">確定髮色並調整頭髮長度（建議染質感棕/奶茶色系，避免太黑）</label></li>
+            <li class="check-item"><input type="checkbox" id="m1-2"><label for="m1-2">定時做密集加強保濕面膜，避免做深層侵入性醫美保養</label></li>
+            <li class="check-item"><input type="checkbox" id="m1-3"><label for="m1-3">確認婚紗禮服尺寸與搭配造型風格</label></li>
+            <li class="check-item"><input type="checkbox" id="m1-4"><label for="m1-4">整理並提供造型參考圖（喜好的髮型、妝容風格）給造型師</label></li>
+        </ul>
+    </div>
+
+    <div id="tab-1" class="tab-content">
+        <ul class="checklist">
+            <li class="check-item"><input type="checkbox" id="w1-1"><label for="w1-1">進行手腳美甲修剪與光療造型（建議裸色或溫柔粉白色系）</label></li>
+            <li class="check-item"><input type="checkbox" id="w1-2"><label for="w1-3">修剪雜毛、面部挽臉或挽眉（請提早完成避免皮膚過敏）</label></li>
+            <li class="check-item"><input type="checkbox" id="w1-3"><label for="w1-2">準備好隱形眼鏡（建議自然款放大片、日拋2組備用）</label></li>
+            <li class="check-item"><input type="checkbox" id="w1-4"><label for="w1-4">確認婚禮當天開門時間與化妝場地地點</label></li>
+        </ul>
+    </div>
+
+    <div id="tab-2" class="tab-content">
+        <ul class="checklist">
+            <li class="check-item"><input type="checkbox" id="d1-1"><label for="d1-1">洗頭請勿使用護髮素、髮油與造型品，吹乾頭髮即可</label></li>
+            <li class="check-item"><input type="checkbox" id="d1-2"><label for="d1-2">做好基礎保濕（敷保濕面膜），不要使用油類保養品</label></li>
+            <li class="check-item"><input type="checkbox" id="d1-3"><label for="d1-3">準備前開襟（鈕扣或拉鍊）上衣，方便開妝後穿脫禮服</label></li>
+            <li class="check-item"><input type="checkbox" id="d1-4"><label for="d1-4">準備好婚宴所需的鞋子、胸貼（Nubar）、隱形眼鏡與配件</label></li>
+            <li class="check-item"><input type="checkbox" id="d1-5"><label for="d1-5">早點休息，避免睡前喝過多的水，防止眼睛水腫</label></li>
+        </ul>
+    </div>
+
+    <div id="tab-3" class="tab-content">
+        <ul class="checklist">
+            <li class="check-item"><input type="checkbox" id="d0-1"><label for="d0-1">素顏並抹上基礎爽膚水，穿著前開襟上衣等待造型師抵達</label></li>
+            <li class="check-item"><input type="checkbox" id="d0-2"><label for="d0-2">準備吸管方便造型完畢後隨時補充水分不掉唇膏</label></li>
+            <li class="check-item"><input type="checkbox" id="d0-3"><label for="d0-3">保持心情愉悅，把今天安心交給造型團隊！</label></li>
+        </ul>
+    </div>
+
+    <!-- 緊急聯絡與注意事項卡片 -->
+    <div class="emergency-card">
+        <h3>✦ 緊急聯絡與注意事項</h3>
+        <ul>
+            <li><strong>造型師電話：</strong> 0912-345-678 (芳瑜)</li>
+            <li><strong>LINE ID：</strong> @bridal_makeup</li>
+            <li><strong>溫馨提醒：</strong> 若當天有膚況不適、過敏發紅現象，請第一時間通知造型師，化妝時請保持房內光線充足與通風。</li>
+        </ul>
+    </div>
+
+    <footer>
+        Wishing you a perfect & romantic wedding day.
+    </footer>
+
+    <script>
+        // 切換 Tab
+        function switchTab(index) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach((tab, i) => {
+                if(i === index) {
+                    tab.classList.add('active');
+                    contents[i].classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    contents[i].classList.remove('active');
+                }
+            });
+        }
+
+        // LocalStorage 邏輯 (支援多位新娘獨立儲存)
+        const brideIdInput = document.getElementById('brideId');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        function getStorageKey() {
+            const id = brideIdInput.value.trim() || 'default-bride';
+            return `bridal_checklist_${id}`;
+        }
+
+        // 載入資料
+        function loadProgress() {
+            const storageKey = getStorageKey();
+            const savedData = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+            checkboxes.forEach(box => {
+                box.checked = savedData[box.id] || false;
+            });
+            updateProgressBar();
+        }
+
+        // 儲存資料與更新進度條
+        function saveProgress() {
+            const storageKey = getStorageKey();
+            const dataToSave = {};
+
+            checkboxes.forEach(box => {
+                dataToSave[box.id] = box.checked;
+            });
+
+            localStorage.setItem(storageKey, JSON.stringify(dataToSave));
+            updateProgressBar();
+        }
+
+        // 計算並更新進度條
+        function updateProgressBar() {
+            const total = checkboxes.length;
+            let checkedCount = 0;
+
+            checkboxes.forEach(box => {
+                if (box.checked) checkedCount++;
+            });
+
+            const percentage = total === 0 ? 0 : Math.round((checkedCount / total) * 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').innerText = percentage + '%';
+        }
+
+        // 事件監聽
+        checkboxes.forEach(box => {
+            box.addEventListener('change', saveProgress);
+        });
+
+        // 當變更專屬代碼時，自動切換讀取該代碼的紀錄
+        brideIdInput.addEventListener('change', () => {
+            loadProgress();
+        });
+
+        // 初始化
+        window.addEventListener('DOMContentLoaded', loadProgress);
+    </script>
+</body>
+</html>
